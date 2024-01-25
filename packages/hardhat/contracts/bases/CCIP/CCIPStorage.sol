@@ -4,7 +4,6 @@ pragma solidity ^0.8.20;
 
 import { IERC20 } from "@openzeppelin/contracts/interfaces/IERC20.sol";
 import { Client } from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
-
 import { EnumerableMap } from "@chainlink/contracts-ccip/src/v0.8/vendor/openzeppelin-solidity/v4.8.0/contracts/utils/structs/EnumerableMap.sol";
 
 library CCIPStorage {
@@ -30,11 +29,11 @@ library CCIPStorage {
 	function _getCCIPStorage()
 		internal
 		pure
-		returns (CCIPStorageStruct storage cs)
+		returns (CCIPStorageStruct storage $)
 	{
 		bytes32 position = CCIP_STORAGE_POSITION;
 		assembly {
-			cs.slot := position
+			$.slot := position
 		}
 	}
 }

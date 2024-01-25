@@ -18,7 +18,7 @@ contract NftCrossChainBurnAndMint is
 	AccessControlInternal,
 	CCIPInternal,
 	UseStorage,
-	INftCrossChainBurnAndMint 
+	INftCrossChainBurnAndMint
 {
 	/// @notice Pay for fees in LINK.
 	/// @dev Assumes your contract has sufficient LINK to pay for CCIP fees.
@@ -32,7 +32,6 @@ contract NftCrossChainBurnAndMint is
 		uint256 _tokenId
 	)
 		external
-		onlyRole(OPERATOR_ROLE)
 		onlyAllowlistedDestinationChain(_destinationChainSelector)
 		returns (bytes32 messageId)
 	{

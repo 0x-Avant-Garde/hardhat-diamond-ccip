@@ -20,11 +20,11 @@ library ERC721Storage {
 	function _getERC721Storage()
 		internal
 		pure
-		returns (ERC721StorageStruct storage ercs)
+		returns (ERC721StorageStruct storage $)
 	{
 		bytes32 position = ERC721_STORAGE_POSITION;
 		assembly {
-			ercs.slot := position
+			$.slot := position
 		}
 	}
 }

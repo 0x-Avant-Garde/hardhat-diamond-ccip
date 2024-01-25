@@ -31,7 +31,6 @@ contract NftCrossChainMinter is
 		uint256 _tokenId
 	)
 		external
-		onlyRole(OPERATOR_ROLE)
 		onlyAllowlistedDestinationChain(_destinationChainSelector)
 		returns (bytes32 messageId)
 	{
