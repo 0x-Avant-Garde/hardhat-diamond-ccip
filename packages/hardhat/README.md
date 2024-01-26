@@ -85,7 +85,7 @@ yarn deployCCIP --reset
 
 The `--reset` flag is to clear the deployments folder if you want to start fresh.
 
-To Verify the contracts run:
+-To Verify the contracts run:
 
 ```ts
 yarn verify --network avaxFuji
@@ -94,6 +94,8 @@ yarn verify --network polygonMumbai
 ```
 
 ### Testing Cross Chain Mints
+
+**Before you run this script, ensure you replace your contract address in the file to your contract address.**
 
 Navigate to the `/packages/hardhat` folder and run
 

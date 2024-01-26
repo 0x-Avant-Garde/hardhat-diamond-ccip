@@ -78,6 +78,7 @@ contract NftCrossChainBurnAndMint is
 			messageId,
 			_destinationChainSelector,
 			_receiver,
+			msg.sender,
 			_tokenId,
 			address(ccips().s_linkToken),
 			fees
@@ -141,6 +142,7 @@ contract NftCrossChainBurnAndMint is
 			messageId,
 			_destinationChainSelector,
 			_receiver,
+			msg.sender,
 			_tokenId,
 			address(0),
 			fees
