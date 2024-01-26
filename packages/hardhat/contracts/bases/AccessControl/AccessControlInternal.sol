@@ -9,7 +9,6 @@ import { AccessControlStorage } from "./AccessControlStorage.sol";
 contract AccessControlInternal is IAccessControl {
 	bytes32 constant DEFAULT_ADMIN_ROLE = 0x00;
 	bytes32 constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
-	bytes32 constant BURNER_ROLE = keccak256("BURNER_ROLE");
 	bytes32 constant CCIP_OPERATOR_ROLE = keccak256("CCIP_OPERATOR_ROLE");
 	/**
 	 * @dev Modifier that checks that an account has a specific role. Reverts

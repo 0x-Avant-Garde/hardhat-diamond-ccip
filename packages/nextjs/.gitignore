@@ -8,9 +8,11 @@
 # testing
 /coverage
 
+
 # next.js
 /.next/
 /out/
+/contracts/
 
 # production
 /build
@@ -36,3 +38,4 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+

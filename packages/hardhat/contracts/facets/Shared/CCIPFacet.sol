@@ -82,7 +82,6 @@ contract CCIPFacet is AccessControlInternal, CCIPInternal, UseStorage {
 		uint256 _amount
 	)
 		external
-		onlyRole(OPERATOR_ROLE)
 		onlyAllowlistedDestinationChain(_destinationChainSelector)
 		returns (bytes32 messageId)
 	{
@@ -150,7 +149,6 @@ contract CCIPFacet is AccessControlInternal, CCIPInternal, UseStorage {
 		uint256 _amount
 	)
 		external
-		onlyRole(CCIP_OPERATOR_ROLE)
 		onlyAllowlistedDestinationChain(_destinationChainSelector)
 		returns (bytes32 messageId)
 	{

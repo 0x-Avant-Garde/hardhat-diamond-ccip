@@ -6,6 +6,7 @@ const setupTest = deployments.createFixture(async ({ deployments, getNamedAccoun
   await deployments.fixture(); // ensure you start from a fresh deployments
   const [deployer]: SignerWithAddress[] = await ethers.getSigners();
   const { diamond } = deployments;
+
   const ccipDiamond = await diamond.deploy("CCIPDiamond", {
     from: deployer.address,
     autoMine: true,

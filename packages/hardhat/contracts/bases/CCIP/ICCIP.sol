@@ -34,6 +34,17 @@ interface ICCIP {
 	);
 
 	// Event emitted when a message is sent to another chain.
+	event CrossChainMintMessageSent(
+		bytes32 indexed messageId, // The unique ID of the CCIP message.
+		uint64 indexed destinationChainSelector, // The chain selector of the destination chain.
+		address receiver, // The address of the receiver on the destination chain.
+		address to, // address the NFT was minted to
+		uint256 tokenId, // the tokenId of the NFT being moved.
+		address feeToken, // the token address used to pay CCIP fees.
+		uint256 fees // The fees paid for sending the message.
+	);
+
+	// Event emitted when a message is sent to another chain.
 	event MessageSent(
 		bytes32 indexed messageId, // The unique ID of the CCIP message.
 		uint64 indexed destinationChainSelector, // The chain selector of the destination chain.

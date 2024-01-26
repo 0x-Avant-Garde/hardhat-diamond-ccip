@@ -2,6 +2,8 @@
 
 An open-source boilerplate for how to use CCIP integrations with [ERC-2535 DIamond Pattern](https://eips.ethereum.org/EIPS/eip-2535) built with [Scaffod-Eth 2](https://scaffoldeth.io) and [hardhat-deploy](https://github.com/wighawag/hardhat-deploy).
 
+### _**This code is unaudited and for proof of concept purposes only. Do not use this code directly in production. This code does not account for the same NFT being minted on multiple chains which is outside the scope of this boilerplate, and ensuring that is a complex task you will need to implement on your own.**_
+
 ## Requirements
 
 Before you begin, you need to install the following tools:
@@ -59,6 +61,54 @@ Visit your app on: `http://localhost:3000`. You can interact with your smart con
 - Edit your frontend in `packages/nextjs/pages`
 - Edit your deployment scripts in `packages/hardhat/deploy`
 
+## Deploying and Testing Cross Chain
+
+Be sure to set your .env variables for at least `DPK` (short for DEPLOYER_PRIVATE_KEY) and `MUMBAI_API_KEY` (you need this to verify on polygonscan).
+
+You need to get:
+
+[Test Avax](https://core.app/tools/testnet-faucet/?subnet=c&token=c) - At least 0.5
+
+[Test MATIC](https://faucet.quicknode.com/polygon/mumbai/) - at least 0.5
+
+[Test LINK on Fuji](https://faucets.chain.link/fuji)
+
+[Test LINK on Mumbai](https://faucets.chain.link/mumbai) - optional if you want to run the test in reverse.
+
+### Deploy and Verify the Contracts
+
+To Deploy the contracts run:
+
+```ts
+yarn deployCCIP --reset
+```
+
+The `--reset` flag is to clear the deployments folder if you want to start fresh.
+
+To Verify the contracts run:
+
+```ts
+yarn verify --network avaxFuji
+
+yarn verify --network polygonMumbai
+```
+
+### Testing Cross Chain Mints
+
+Navigate to the `/packages/hardhat` folder and run
+
+```ts
+npx hardhat run interactions/00_CrossChainMint.ts
+```
+
+This script does the following steps:
+
+1. Sends 5 LINK to the AVAX Contract to pay fees. (You only need to do this once for testing purposes)
+2. Allows Polygon Mumbai as a Destination Chain.
+3. Allows Avax Fuji as a Source Chain.
+4. Allows the Avax Fuji Contract address as a Sender (note the address is the same on both chains).
+5. Mints a NFT from Avax Fuji with `tokenId: 1` to `msg.sender` on Polygon Mumbai.
+
 ## Understanding the Facets
 
 The facets are separated into 2 categories: Shared and Custom. They can be found in `packages/hardhat/contracts/facets`.
@@ -92,6 +142,8 @@ The facets are separated into 2 categories: Shared and Custom. They can be found
 6. UseStorage (found in the `/packages/hardhat/contracts/core` folder)
    - This Facet facilitates a centralized location to provide easy access to the different storage locations in other Facets.
    - It has a RootStorage struct that only tracks if the initialization has been run yet or not.
+7. Diamond (found in the `/packages/hardhat/contracts/core` folder)
+   - This facet is where the fallback() function is that directs the incoming calls to the proper facets. **This is also where the initial roles are granted for Access Control**
 
 ### Custom Facets
 

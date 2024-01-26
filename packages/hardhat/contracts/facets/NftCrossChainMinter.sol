@@ -48,7 +48,7 @@ contract NftCrossChainMinter is
 			extraArgs: Client._argsToBytes(
 				Client.EVMExtraArgsV1({ gasLimit: 200_000 }) // Additional arguments, setting gas limit and non-strict sequency mode
 			),
-			feeToken: address(0)
+			feeToken: address(ccips().s_linkToken)
 		});
 
 		// Initialize a router client instance to interact with cross-chain router
@@ -70,10 +70,11 @@ contract NftCrossChainMinter is
 		messageId = router.ccipSend(_destinationChainSelector, evm2AnyMessage);
 
 		// Emit an event with message details
-		emit CrossChainBurnAndMintMessageSent(
+		emit CrossChainMintMessageSent(
 			messageId,
 			_destinationChainSelector,
 			_receiver,
+			msg.sender,
 			_tokenId,
 			address(ccips().s_linkToken),
 			fees
@@ -130,10 +131,11 @@ contract NftCrossChainMinter is
 			evm2AnyMessage
 		);
 
-		emit CrossChainBurnAndMintMessageSent(
+		emit CrossChainMintMessageSent(
 			messageId,
 			_destinationChainSelector,
 			_receiver,
+			msg.sender,
 			_tokenId,
 			address(0),
 			fees

@@ -52,7 +52,7 @@ contract NftCrossChainBurnAndMint is
 			extraArgs: Client._argsToBytes(
 				Client.EVMExtraArgsV1({ gasLimit: 200_000 }) // Additional arguments, setting gas limit and non-strict sequency mode
 			),
-			feeToken: address(0)
+			feeToken: address(ccips().s_linkToken)
 		});
 
 		// Initialize a router client instance to interact with cross-chain router
