@@ -41,6 +41,10 @@ cd scaffold-eth-2
 yarn install
 ```
 
+If you get yarn errors during installation, you may need to run:
+
+`yarn set version stable`
+
 2. Run a local network in the first terminal:
 
 ```
